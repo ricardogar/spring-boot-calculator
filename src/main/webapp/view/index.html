@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+<link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+<link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="column" style="text-align:center;">
+                <img src="/logo.png" style="height: 70px;" />
+                <p style="text-align:center;">
+                Calculadora demo.
+                </p>
+            </div>
+            <div class="column">
+                <form>
+                    <fieldset>
+                        <label for="numero1">Numero 1:</label>
+                        <input type="text" placeholder="Ej. 2" id="numero1">
+                        <label for="numero2">Numero 2:</label>
+                        <input type="text" placeholder="Ej. 2" id="numero2">
+                        <button id="suma" class="button">+</button>
+                        <button id="resta" class="button">-</button>
+                        <button id="multiplica" class="button">*</button>
+                        <button id="divide" class="button">/</button>
+                        <label for="result">Resultado:</label>
+                        <input type="text" readonly id="result">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function () {
+	var buildRequest = function () {
+		var request = {
+	            numero1: $('#numero1').val(),
+	            numero2: $('#numero2').val()
+	        };
+		return request;
+	};
+	var callApi = function (path, request, callback) {
+		$.post(path, request, function (data) {
+			callback(data);
+        })
+	};
+    $('#suma').click(function(e) {
+        e.preventDefault()
+        callApi('/calculadora/sumar', buildRequest(), function (data) {
+            $('#result').val(data.resultado);
+        });
+    })
+    $('#resta').click(function(e) {
+        e.preventDefault()
+        callApi('/calculadora/restar', buildRequest(), function (data) {
+            $('#result').val(data.resultado);
+        });
+    })
+    $('#multiplica').click(function(e) {
+        e.preventDefault()
+        callApi('/calculadora/multiplicar', buildRequest(), function (data) {
+            $('#result').val(data.resultado);
+        });
+    })
+    $('#divide').click(function(e) {
+        e.preventDefault()
+        callApi('/calculadora/dividir', buildRequest(), function (data) {
+            $('#result').val(data.resultado);
+        });
+    })
+})
+</script>
+</body>
+</html>
