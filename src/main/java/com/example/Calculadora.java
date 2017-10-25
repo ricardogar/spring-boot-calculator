@@ -28,7 +28,7 @@ public class Calculadora {
     }
 	
 	public int promediar (int num1, int num2) {
-		resultado = this.dividir(this.sumar(num1 + num2), 2);
+		resultado = this.dividir(this.sumar(num1, num2), 2);
 		return resultado;
     }
 }
