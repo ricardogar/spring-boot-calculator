@@ -6,7 +6,7 @@ node {
    def mvnHome
    
    stage('Preparation') { 
-      git 'https://gitlab.com/mmartinezespichan/spring-boot-calculator.git'
+      git 'https://github.com/jorgerisco/spring-boot-calculator.git'
       mvnHome = tool 'M3'
    }
    stage('Build') {
