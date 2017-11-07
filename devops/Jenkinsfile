@@ -1,17 +1,14 @@
-//Variables
-def hostExposePort=8083
-def groupName="expositor"
-
-node {
-   def mvnHome
-   
+node { 
    stage('Preparation') { 
-      git 'https://github.com/jorgerisco/spring-boot-calculator.git'
+      git clone 'https://github.com/jorgerisco/spring-boot-calculator.git'
    }
-   stage('Build') {
-      mvnHome = tool 'M3'
-      sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+   
+   def mvnHome = "/opt/apache-maven-3.5.0"
+   stage('Build') {      
+      sh "'${mvnHome}/bin/mvn' package"
    }
+   
+   def groupName="expositor"
    stage('QA Analysis') {
       sh "'${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://52.200.168.109:9000 -Dsonar.projectName=${groupName} -Dsonar.projectKey=${groupName}"
    }
@@ -19,6 +16,8 @@ node {
       junit '**/target/surefire-reports/TEST-*.xml'
       archive 'target/*.jar'
    }
+   
+   def hostExposePort=8083
    stage('Deployment') {
       sh "chmod +x devops/deploy.sh"
       def result=sh(script: "devops/deploy.sh ${hostExposePort}",returnStdout: true)
