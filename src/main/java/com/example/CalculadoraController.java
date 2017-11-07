@@ -39,48 +39,4 @@ public class CalculadoraController {
         return new ResultadoOperacion(counter.incrementAndGet(), tipo, numero1, numero2, resultado, serverAddress);
     }
 	
-	@RequestMapping("/restar")
-    public ResultadoOperacion restar(@RequestParam(value="numero1", defaultValue="0") String numero1, 
-						@RequestParam(value="numero2", defaultValue="0") String numero2) throws Exception {
-		
-		int num1 = Integer.parseInt(numero1);
-		int num2 = Integer.parseInt(numero2);
-		int res = calculadora.restar(num1, num2);
-		
-		String tipo = "Resta";
-		String resultado = Integer.toString(res);
-		String serverAddress = service.getServerAddress();
-		
-        return new ResultadoOperacion(counter.incrementAndGet(), tipo, numero1, numero2, resultado, serverAddress);
-    }
-	
-	@RequestMapping("/multiplicar")
-    public ResultadoOperacion multiplicar(@RequestParam(value="numero1", defaultValue="0") String numero1, 
-						@RequestParam(value="numero2", defaultValue="0") String numero2) throws Exception {
-		
-		int num1 = Integer.parseInt(numero1);
-		int num2 = Integer.parseInt(numero2);
-		int res = calculadora.multiplicar(num1, num2);
-		
-		String tipo = "Multiplicacion";
-		String resultado = Integer.toString(res);
-		String serverAddress = service.getServerAddress();
-		
-        return new ResultadoOperacion(counter.incrementAndGet(), tipo, numero1, numero2, resultado, serverAddress);
-    }
-	
-	@RequestMapping("/dividir")
-    public ResultadoOperacion dividir(@RequestParam(value="numero1", defaultValue="0") String numero1, 
-						@RequestParam(value="numero2", defaultValue="0") String numero2) throws Exception {
-		
-		int num1 = Integer.parseInt(numero1);
-		int num2 = Integer.parseInt(numero2);
-		int res = calculadora.dividir(num1, num2);
-		
-		String tipo = "Division";
-		String resultado = Integer.toString(res);
-		String serverAddress = service.getServerAddress();
-		
-        return new ResultadoOperacion(counter.incrementAndGet(), tipo, numero1, numero2, resultado, serverAddress);
-    }
 }
