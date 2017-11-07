@@ -22,60 +22,19 @@ public class CalculadoraApplicationTest {
     private MockMvc mockMvc;
 
     @Test
-    public void testSumaSinParametros() throws Exception {
-
-        this.mockMvc.perform(get("/calculadora/sumar"))
-				.andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.resultado").value("0"));
-    }
-
-    @Test
-    public void testSuma() throws Exception {
-
-        this.mockMvc.perform(get("/calculadora/sumar")
+    public void sumaCuandoResultadoOk() throws Exception {
+	//Arrage
+	int operador1=5;
+	int operador2=3;
+	int resultado=8;
+	    
+	//Act
+	Object peticion=this.mockMvc.perform(get("/calculadora/sumar")
 				.param("numero1", "5")
 				.param("numero2", "3"))
-                .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.resultado").value("8"));
-    }
-	
-	@Test
-    public void testResta() throws Exception {
-
-        this.mockMvc.perform(get("/calculadora/restar")
-				.param("numero1", "6")
-				.param("numero2", "2"))
-                .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.resultado").value("4"));
-    }
-	
-	@Test
-    public void testMultiplicacion() throws Exception {
-
-        this.mockMvc.perform(get("/calculadora/multiplicar")
-				.param("numero1", "2")
-				.param("numero2", "3"))
-                .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.resultado").value("6"));
-    }
-	
-	@Test
-    public void testDivision() throws Exception {
-
-        this.mockMvc.perform(get("/calculadora/dividir")
-				.param("numero1", "8")
-				.param("numero2", "4"))
-                .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.resultado").value("2"));
-    }
-	
-	@Test
-    public void testDivisionEntreCero() throws Exception {
-
-        this.mockMvc.perform(get("/calculadora/dividir")
-				.param("numero1", "5")
-				.param("numero2", "0"))
-                .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.resultado").value("0"));
+                .andDo(print()).andExpect(status().isOk());
+		
+	//Assert
+        peticion.andExpect(jsonPath("$.resultado").value("8"));
     }
 }
