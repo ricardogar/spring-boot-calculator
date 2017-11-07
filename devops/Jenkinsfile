@@ -1,6 +1,6 @@
 node { 
    stage('Preparation') { 
-      git clone 'https://github.com/jorgerisco/spring-boot-calculator.git'
+      git checkout 'https://github.com/jorgerisco/spring-boot-calculator.git'
    }
    
    def mvnHome = "/opt/apache-maven-3.5.0"
