@@ -4,5 +4,5 @@ import java.net.UnknownHostException;
 
 public interface AddressService {
 
-    String getServerAddress() throws UnknownHostException;
+    String getServerAddress() throws Exception;
 }
