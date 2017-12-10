@@ -1,6 +1,5 @@
 def groupName="expositor"
 def hostExposePort=8083
-
 node { 
    def mvnHome
 
