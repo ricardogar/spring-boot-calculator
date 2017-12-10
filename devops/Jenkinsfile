@@ -3,7 +3,7 @@ node {
       git 'https://github.com/ricardogar/spring-boot-calculator.git'
    }
    
-   def mvnHome = "/opt/apache-maven-3.5.0"
+   def mvnHome = "C:/apache-maven-3.3.9"
    stage('Build') {      
       sh "'${mvnHome}/bin/mvn' package"
    }
