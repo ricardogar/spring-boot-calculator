@@ -1,4 +1,4 @@
-export DOCKER_HOST=tcp://127.0.0.1:4243
+export DOCKER_HOST=tcp://0.0.0.0:4243
 export hostExposePort=$1
 echo "hostExposePort: ${hostExposePort}"
 docker rm -f $(docker ps -a -q --filter "name=calculator_instance${hostExposePort}")
