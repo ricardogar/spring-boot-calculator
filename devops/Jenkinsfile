@@ -8,11 +8,9 @@ node {
       mvnHome = tool 'MAVEN3'
    }
       stage('Build') {      
-      sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
    }
    
   stage('QA Analysis') {
-     sh "'${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://52.200.168.109:9000 -Dsonar.projectName=${groupName} -Dsonar.projectKey=${groupName}"
   }
    stage('Results') {
       junit '**/target/surefire-reports/TEST-*.xml'
