@@ -23,7 +23,7 @@ public class IndexTest {
     @Test
     public void testSumaSinParametros() throws Exception {
 
-        //this.mockMvc.perform(get("/index"))
-	//		.andDo(print()).andExpect(status().isOk());
+        this.mockMvc.perform(get("/index"))
+			.andDo(print()).andExpect(status().isOk());
     }
 }
