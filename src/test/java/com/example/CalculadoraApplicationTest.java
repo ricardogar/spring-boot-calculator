@@ -13,6 +13,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.ResultHandler;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -36,6 +38,10 @@ public class CalculadoraApplicationTest {
               .andDo(print()).andExpect(status().isOk());
 		
 	//Assert
-        peticion.andExpect(jsonPath("$.resultado").value("8"));
-    }
+     	((ResultActions) peticion).andExpect(jsonPath("$.resultado").value("8"));
+	}
+
+	private ResultHandler print() {
+		return null;
+	}
 }
