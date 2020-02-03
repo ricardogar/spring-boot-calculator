@@ -1,19 +1,19 @@
 def groupName="expositor"
 def hostExposePort=8083
 node { 
-   def mvnHome
+   def mvnHome="/usr/share/maven"
 
    stage('Preparation') { 
       git 'https://github.com/ricardogar/spring-boot-calculator.git'
-      mvnHome = tool 'MAVEN3'
    }
-      stage('Build') {      
+   stage('Build') {    
+       sh "'${mvnHome}/bin/mvn' package"         
    }
    
   stage('QA Analysis') {
   }
    stage('Results') {
-      
+      junit "**/target/sufire-reports/Test-*.xml"      
       archive 'target/*.jar'
    }
    
