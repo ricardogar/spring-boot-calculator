@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultHandler;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -24,6 +25,11 @@ public class IndexTest {
     public void testSumaSinParametros() throws Exception {
 
         this.mockMvc.perform(get("/index"))
-			.andDo(print()).andExpect(status().isOk());
+            //.andDo(print()).andExpect(status().isOk());
+                .andDo(print()).andExpect(status().isOk());
     }
+
+    private ResultHandler print() {
+        return null;
+	}
 }
